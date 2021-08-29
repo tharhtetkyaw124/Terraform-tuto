@@ -1,0 +1,57 @@
+
+
+# SSH file to connect with AWS EC2
+# ----------------------------------- 
+it will be locate in the local user filesystem in ssh folder ~/.ssh
+change the file permission, otherwise aws will reject the ssh file and throw an error "bad permission"
+make as follow: 
+                chmod 400 + file_name
+
+    example:
+                chmod 400 ec2Tutorial.pem 
+
+
+connect ec2 instance through SSH 
+
+1) open shell
+2) ssh -i key_pairs_file ec2-user@PUBLIC_EC2_IP
+
+example: 
+
+        ssh -i EC2Tutorial.pem ec2-user@35.180.100.144
+
+# SSH
+# ---------------
+
+# Where is localled and exist key?
+ ---------------------------------
+ Remenber, local SSH key are localed in mac on ~/.ssh folder under the name id_rsa.pub  
+
+# How create new SSH key? 
+ --------------------------
+  ssh-keygen
+
+#There is two way to remove source
+#1.- Remove directly from the main.tf file
+#2.- Apply the command "destroy" as follow: terraform destroy -target <source_type>.<source_name>  
+#example terraform destroy -target aws_subnet.demo-subnet-2
+#However, this not a good practice, use apply instead.  
+#becouse after make destroy in the shell. the file doesn corresponde to the current state
+
+#Terrform destroy
+#without any arguments, it will be destroye each resource in the order in the code was writen.
+#remove, destroy, clean
+
+#apply auto-approve, this commands allows apply chnages without our confirmation question
+
+#PLAN: this command will show the current state and the change to apply for  desire state.
+#like un Git (git status)
+
+#this command tell us that a new resource will be add
+
+#To clean all configurstion file
+
+
+# terraform state show <<name_of_resoruce >> 
+  --------------------------------------------
+We can see all the properties of a resource
